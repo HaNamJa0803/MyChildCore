@@ -13,10 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup .NET 6.x
+    - name: Setup .NET 8.x
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.x
+        dotnet-version: 8.0.x
 
     - name: Restore NuGet packages
       run: dotnet restore MyChildCore/MyChildCore.csproj
@@ -25,7 +25,7 @@ jobs:
       run: dotnet build MyChildCore/MyChildCore.csproj --configuration Release
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: MyChildCore
-        path: MyChildCore/bin/Release/net6.0/
+        path: MyChildCore/bin/Release/net8.0/
