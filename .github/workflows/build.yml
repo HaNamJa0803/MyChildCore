@@ -2,7 +2,8 @@ name: Build Stardew Valley Mod
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,21 +11,21 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET 6.x
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 6.x
 
-    - name: Restore dependencies
+    - name: Restore NuGet packages
       run: dotnet restore MyChildCore/MyChildCore.csproj
 
     - name: Build project
-      run: dotnet build MyChildCore/MyChildCore.csproj --configuration Release --no-restore
+      run: dotnet build MyChildCore/MyChildCore.csproj --configuration Release
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3.1.3  # 버전 고정
+      uses: actions/upload-artifact@v4
       with:
         name: MyChildCore
         path: MyChildCore/bin/Release/net6.0/
