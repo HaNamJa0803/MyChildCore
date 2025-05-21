@@ -20,7 +20,9 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore NuGet packages
-        run: dotnet restore MyChildCire/MyChildCore/MyChildCore.csproj
+        working-directory: MyChildCire/MyChildCore
+        run: dotnet restore MyChildCore.csproj
 
       - name: Build project
-        run: dotnet build MyChildCire/MyChildCore/MyChildCore.csproj -c Release --no-restore
+        working-directory: MyChildCire/MyChildCore
+        run: dotnet build MyChildCore.csproj -c Release --no-restore
