@@ -1,23 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+name: Build Stardew Valley Mod
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+on: push: paths: - '.cs' - '.csproj' - '.sln' pull_request: paths: - '.cs' - '.csproj' - '.sln'
 
-  <ItemGroup>
-    <Reference Include="StardewModdingAPI">
-      <HintPath>../DLL/StardewModdingAPI.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="StardewValley">
-      <HintPath>../DLL/StardewValley.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework">
-      <HintPath>../DLL/Microsoft.Xna.Framework.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
+jobs: build: runs-on: ubuntu-latest
 
-</Project>
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v3
+
+  - name: Setup .NET 6.x
+    uses: actions/setup-dotnet@v3
+    with:
+      dotnet-version: '6.x'
+
+  - name: Restore NuGet packages
+    run: dotnet restore MyChildCore/MyChildCore.csproj
+
+  - name: Build project
+    run: dotnet build MyChildCore/MyChildCore.csproj --configuration Release
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+  - name: Upload artifact
+    uses: actions/upload-artifact@v3
+    with:
+      name: MyChildCore
+      path: MyChildCore/bin/Release
+
