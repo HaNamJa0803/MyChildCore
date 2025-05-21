@@ -2,27 +2,34 @@ name: Build Stardew Valley Mod
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Setup .NET 6.x
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
+    - name: Setup .NET 6.x
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
 
-      - name: Restore NuGet packages
-        working-directory: MyChildCore
-        run: dotnet restore MyChildCore.csproj
+    - name: Restore NuGet packages
+      run: dotnet restore MyChildCore/MyChildCore.csproj
 
-      - name: Build project
-        working-directory: MyChildCore
-        run: dotnet build MyChildCore.csproj -c Release --no-restore
+    - name: Build project
+      run: dotnet build MyChildCore/MyChildCore.csproj -c Release --no-restore
+
+    - name: Publish output
+      run: dotnet publish MyChildCore/MyChildCore.csproj -c Release -o output
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: MyChildCore
+        path: output
