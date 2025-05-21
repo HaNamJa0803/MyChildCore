@@ -28,7 +28,7 @@ jobs:
       run: dotnet build MyChildCore/MyChildCore.csproj -c Release
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@main
       with:
         name: MyChildCore
         path: MyChildCore/bin/Release/
