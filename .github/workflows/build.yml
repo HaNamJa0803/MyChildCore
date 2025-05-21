@@ -2,7 +2,11 @@ name: Build Stardew Valley Mod
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - '**.cs'
+      - '**.csproj'
+      - '.github/workflows/**'
+  pull_request:
 
 jobs:
   build:
@@ -12,13 +16,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: Setup .NET 6.x
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
 
-    - name: Build project
-      run: dotnet build --configuration Release
+    - name: Restore NuGet cache
+      run: dotnet nuget locals all --clear
 
-    - name: Publish output
-      run: dotnet publish
+    - name: Build project
+      run: dotnet build MyChildCore/MyChildCore.csproj -c Release
