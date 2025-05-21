@@ -3,7 +3,6 @@ name: Build Stardew Valley Mod
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
@@ -13,19 +12,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
+    - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
 
-    - name: Restore packages
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build the project
+    - name: Build project
       run: dotnet build --configuration Release
 
-    - name: Upload built DLL
+    - name: Upload build result
       uses: actions/upload-artifact@v3
       with:
-        name: MyChildCore-DLL
-        path: '**/bin/Release/*.dll'
+        name: MyChildCore
+        path: bin/Release/net6.0/
