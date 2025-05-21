@@ -2,12 +2,11 @@ name: Build Stardew Valley Mod
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -19,13 +18,10 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./MyChildCore.csproj
+      run: dotnet restore
 
     - name: Build project
-      run: dotnet build ./MyChildCore.csproj --configuration Release
+      run: dotnet build --configuration Release
 
-    - name: Upload Build
-      uses: actions/upload-artifact@v3
-      with:
-        name: MyChildCore
-        path: ./bin/Release/net6.0
+    - name: Publish output
+      run: dotnet publish
