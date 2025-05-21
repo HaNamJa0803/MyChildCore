@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>10.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,12 +25,8 @@
     <Reference Include="System.Runtime">
       <HintPath>lib/System.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="GenericModConfigMenu">
-      <HintPath>lib/GenericModConfigMenu.dll</HintPath>
-    </Reference>
-    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
-      <HintPath>lib/SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+    <Reference Include="System.ObjectModel">
+      <HintPath>lib/System.ObjectModel.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>
