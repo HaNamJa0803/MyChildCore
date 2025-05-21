@@ -1,35 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="StardewModdingAPI">
-      <HintPath>../lib/StardewModdingAPI.dll</HintPath>
+      <HintPath>../DLL/StardewModdingAPI.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="StardewValley">
-      <HintPath>../lib/StardewValley.dll</HintPath>
+      <HintPath>../DLL/StardewValley.dll</HintPath>
+      <Private>false</Private>
     </Reference>
-    <Reference Include="GenericModConfigMenu">
-      <HintPath>../lib/GenericModConfigMenu.dll</HintPath>
-    </Reference>
-    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
-      <HintPath>../lib/SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>../lib/MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core">
-      <HintPath>../lib/System.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>../lib/System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>../lib/System.dll</HintPath>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>../DLL/Microsoft.Xna.Framework.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
+
 </Project>
