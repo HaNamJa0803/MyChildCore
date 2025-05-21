@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -16,17 +15,22 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>lib/MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="System.Core">
-      <HintPath>lib/System.Core.dll</HintPath>
+    <Reference Include="GenericModConfigMenu">
+      <HintPath>lib/GenericModConfigMenu.dll</HintPath>
     </Reference>
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
+      <HintPath>lib/SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+    </Reference>
+
+    <!-- System DLLs -->
     <Reference Include="System">
       <HintPath>lib/System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core">
+      <HintPath>lib/System.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime">
       <HintPath>lib/System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ObjectModel">
-      <HintPath>lib/System.ObjectModel.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
