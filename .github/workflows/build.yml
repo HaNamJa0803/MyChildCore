@@ -2,9 +2,11 @@ name: Build Stardew Valley Mod
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'MyChildCore/**'
+      - '.github/workflows/build.yml'
+    branches:
+      - main
 
 jobs:
   build:
@@ -26,7 +28,7 @@ jobs:
       run: dotnet build MyChildCore/MyChildCore.csproj -c Release
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: MyChildCore
         path: MyChildCore/bin/Release/
