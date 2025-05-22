@@ -3,18 +3,35 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <AssemblyName>MyChildCore</AssemblyName>
+    <RootNamespace>MyChildCore</RootNamespace>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="StardewModdingAPI">
-      <HintPath>../DLL/StardewModdingAPI.dll</HintPath>
-    </Reference>
     <Reference Include="StardewValley">
-      <HintPath>../DLL/StardewValley.dll</HintPath>
+      <HintPath>DLL/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>DLL/StardewModdingAPI.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>../DLL/MonoGame.Framework.dll</HintPath>
+      <HintPath>DLL/MonoGame.Framework.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DLL\StardewValley.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DLL\StardewModdingAPI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DLL\MonoGame.Framework.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
