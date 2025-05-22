@@ -1,21 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>MyChildCore</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Nullable>enable</Nullable>
-    <LangVersion>preview</LangVersion>
-    <UseSharedCompilation>false</UseSharedCompilation>
-    <BuildInParallel>false</BuildInParallel>
-    <UseRoslyn>true</UseRoslyn>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="ModEntry.cs" />
+    <Compile Include="ModConfig.cs" />
+    <Compile Include="SpouseSetting.cs" />
+    <Compile Include="SleepwearTranslations.cs" />
+    <Compile Include="ChildAppearanceApplier.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="StardewModdingAPI">
-      <HintPath>/storage/emulated/0/Download/DLL/StardewModdingAPI.dll</HintPath>
+      <HintPath>lib/StardewModdingAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StardewValley">
+      <HintPath>lib/StardewValley.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>lib/MonoGame.Framework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
+      <HintPath>lib/SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="GenericModConfigMenu">
-      <HintPath>/storage/emulated/0/Download/DLL/GenericModConfigMenu.dll</HintPath>
+      <HintPath>lib/GenericModConfigMenu.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
 
