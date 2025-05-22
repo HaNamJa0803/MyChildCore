@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <BuildInParallel>false</BuildInParallel>
+    <UseRoslyn>true</UseRoslyn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>/storage/emulated/0/Download/DLL/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="GenericModConfigMenu">
+      <HintPath>/storage/emulated/0/Download/DLL/GenericModConfigMenu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
