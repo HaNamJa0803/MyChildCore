@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UseWpf>false</UseWpf>
+    <UseWindowsForms>false</UseWindowsForms>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>MyChildCore</AssemblyName>
+    <OutputPath>bin\Release\net8.0\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- SMAPI -->
+    <Reference Include="StardewModdingAPI">
+      <HintPath>..\StardewValley\Mods\SMAPI\StardewModdingAPI.dll</HintPath>
+    </Reference>
+
+    <!-- Stardew Valley Core -->
+    <Reference Include="Stardew Valley">
+      <HintPath>..\StardewValley\Stardew Valley.exe</HintPath>
+    </Reference>
+
+    <!-- MonoGame Framework -->
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\Libraries\MonoGame\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+
+    <!-- Generic Mod Config Menu -->
+    <Reference Include="GenericModConfigMenu">
+      <HintPath>..\Mods\GenericModConfigMenu\GenericModConfigMenu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="*.cs" />
+  </ItemGroup>
+</Project>
