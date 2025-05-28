@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyChildCore</RootNamespace>
+    <AssemblyName>MyChildCore</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Stardew Valley 및 종속 DLL 참조 -->
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>0Harmony.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 유틸리티 기반 소스 파일 포함 -->
+    <Compile Include="AppearanceManager.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="ChildManager.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="CustomLogger.cs" />
+    <Compile Include="EventManager.cs" />
+    <Compile Include="ModEntry.cs" />
+    <!-- 필요시 Config, GMCM, 기타 추가 소스 파일도 여기에 -->
+  </ItemGroup>
+
+</Project>
