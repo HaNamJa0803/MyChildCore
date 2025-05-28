@@ -20,6 +20,9 @@ jobs:
 
     - name: NuGet Restore
       run: nuget restore MyChildCore.Mod/Mod.csproj
+      
+      - name: List all DLLs in libs (디버그용)
+  run: ls -lh MyChildCore.Mod/../libs
 
     - name: Build MyChildCore.Mod (net48)
       run: msbuild MyChildCore.Mod/Mod.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
