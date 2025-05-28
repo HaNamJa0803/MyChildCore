@@ -12,10 +12,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout source (with LFS)
+    - name: Checkout source
       uses: actions/checkout@v4
-      with:
-        lfs: true
+      
+      - name: List all DLLs in libs (for debug)
+        run: dir MyChildCore.Mod/../libs
+        shell: pwsh
 
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
@@ -25,12 +27,6 @@ jobs:
 
     - name: Build MyChildCore.Mod (net48)
       run: msbuild MyChildCore.Mod/Mod.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
-
-    - name: List all DLLs in libs (for debug)
-      shell: pwsh
-      run: |
-        Write-Host "=== DLL LIST in libs ==="
-        Get-ChildItem ./libs -Filter *.dll | Select-Object Name, Length
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
