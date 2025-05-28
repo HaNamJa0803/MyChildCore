@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyChildCore.Utilities</RootNamespace>
+    <AssemblyName>MyChildCore.Utilities</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.ToolkitCoreInterfaces">
+      <HintPath>../libs/SMAPI.ToolkitCoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+    </Reference>
+    <!-- System, System.Core 등은 net48에서 자동 참조이므로 빼도 됨 -->
+  </ItemGroup>
+</Project>
