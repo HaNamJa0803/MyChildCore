@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyChildCore.Utilities</RootNamespace>
+    <AssemblyName>MyChildCore.Utilities</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <!-- <EnableDefaultCompileItems>false</EnableDefaultCompileItems> -->
+    <!-- 필요하면 활성화, 없으면 주석처리 또는 삭제 -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.ToolkitCoreInterfaces">
+      <HintPath>../libs/SMAPI.ToolkitCoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+    </Reference>
+    <!-- System/Framework 계열 참조는 완전히 삭제 -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="AppearanceManager.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="ChildData.cs" />
+    <Compile Include="ChildManager.cs" />
+    <Compile Include="CustomLogger.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="EventManager.cs" />
+    <!-- 혹은 <Compile Include="*.cs" /> 도 가능 -->
+  </ItemGroup>
+
+</Project>
