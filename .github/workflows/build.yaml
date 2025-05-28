@@ -20,12 +20,13 @@ jobs:
 
     - name: NuGet Restore
       run: nuget restore MyChildCore.Mod/Mod.csproj
-      
-    - name: List all DLLs in libs (디버그용)
-      run: ls -lh MyChildCore.Mod/../libs
 
     - name: Build MyChildCore.Mod (net48)
       run: msbuild MyChildCore.Mod/Mod.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+
+    - name: List all DLLs in libs (for debug)
+      run: Get-ChildItem MyChildCore.Mod/../libs | Select-Object Name, Length
+      shell: pwsh
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
@@ -33,3 +34,6 @@ jobs:
         name: MyChildCore-Mod-DLL
         path: |
           MyChildCore.Mod/bin/Release/net48/*.dll
+
+    - name: Post checkout source
+      run: git --version
