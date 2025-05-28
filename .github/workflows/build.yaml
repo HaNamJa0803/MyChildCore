@@ -12,12 +12,16 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout source
+    - name: Checkout source (with LFS)
       uses: actions/checkout@v4
-      
-      - name: List all DLLs in libs (for debug)
-        run: dir MyChildCore.Mod/../libs
-        shell: pwsh
+      with:
+        lfs: true
+
+    - name: List all DLLs in libs (for debug)
+      shell: pwsh
+      run: |
+        Write-Host "=== DLL LIST in libs ==="
+        Get-ChildItem ./libs -Filter *.dll | Select-Object Name, Length
 
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
