@@ -13,21 +13,20 @@ jobs:
 
     steps:
     - name: Checkout source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
 
-    # (필요시 NuGet 패키지 복원)
     - name: NuGet Restore
-      run: nuget restore MyChildCore.Utilities.sln  # .csproj 대신 .sln을 사용하는 것을 권장합니다.
+      run: nuget restore MyChildCore.Utilities.csproj
 
     - name: Build MyChildCore.Utilities (net48)
-      run: msbuild MyChildCore.Utilities.csproj /p:Configuration=Release /p:TargetFramework=v4.8  # 'TargetFrameworkVersion' 대신 'TargetFramework'
+      run: msbuild MyChildCore.Utilities.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
     - name: Upload DLL artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MyChildCore-Utilities-DLL
         path: |
-          **/bin/Release/net48/*.dll  # 경로가 맞는지 다시 확인하세요.
+          **/bin/Release/net48/*.dll
