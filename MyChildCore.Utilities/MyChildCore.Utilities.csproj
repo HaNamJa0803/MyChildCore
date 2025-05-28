@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyChildCore.Utilities</RootNamespace>
+    <AssemblyName>MyChildCore.Utilities</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.ToolkitCoreInterfaces">
+      <HintPath>../libs/SMAPI.ToolkitCoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+    </Reference>
+    <!-- System 계열 참조는 modern .NET에서 금지! -->
+  </ItemGroup>
+
+  <!-- .NET SDK가 자동으로 모든 .cs 파일을 컴파일하므로, 여기를 삭제하거나 비워두세요 -->
+  <!--
+  <ItemGroup>
+    <Compile Include="AppearanceManager.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="ChildData.cs" />
+    <Compile Include="ChildManager.cs" />
+    <Compile Include="CustomLogger.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="EventManager.cs" />
+  </ItemGroup>
+  -->
+
+</Project>
