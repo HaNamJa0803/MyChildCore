@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>MyChildCore.Main</RootNamespace>
+    <RootNamespace>MyChildCore.Mod</RootNamespace>
     <AssemblyName>MyChildCore.Mod</AssemblyName>
     <LangVersion>latest</LangVersion>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
