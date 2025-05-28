@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppearanceManager.cs"/>
+    <Compile Include="CacheManager.cs"/>
+    <Compile Include="ChildData.cs"/>
+    <Compile Include="ChildManager.cs"/>
+    <Compile Include="CustomLogger.cs"/>
+    <Compile Include="DataManager.cs"/>
+    <Compile Include="EventManager.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
+      <HintPath>../libs/SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections">
+      <HintPath>../libs/System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>../libs/System.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>../libs/netstandard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
