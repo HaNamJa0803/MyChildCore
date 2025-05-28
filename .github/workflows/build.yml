@@ -1,30 +1,33 @@
-name: Build Stardew Valley Mod
+name: Build MyChildCore.Utilities
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout source
+      uses: actions/checkout@v3
 
-    - name: Setup MSBuild path
+    - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
 
-    - name: Restore NuGet packages
-      run: nuget restore MyChildCore.sln
+    # (필요시 NuGet 패키지 복원)
+    - name: NuGet Restore
+      run: nuget restore MyChildCore.Utilities.csproj
 
-    - name: Build mod
-      run: msbuild MyChildCore.sln /p:Configuration=Release
+    - name: Build MyChildCore.Utilities (net48)
+      run: msbuild MyChildCore.Utilities.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
-    - name: Upload Build Artifacts
+    - name: Upload DLL artifact
       uses: actions/upload-artifact@v3
       with:
-        name: MyChildCoreDLL
+        name: MyChildCore-Utilities-DLL
         path: |
-          **/bin/Release/**/*.dll
+          **/bin/Release/net48/*.dll
