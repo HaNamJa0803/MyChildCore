@@ -12,31 +12,21 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout source (with LFS)
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-          
-      - name: List all DLLs in libs (for debug)
-        run: dir ./libs
-        shell: pwsh
+    - name: Checkout source
+      uses: actions/checkout@v4
 
-      - name: Setup .NET Framework Developer Pack
-        uses: microsoft/setup-msbuild@v2
+    - name: Setup .NET Framework Developer Pack
+      uses: microsoft/setup-msbuild@v2
 
-      - name: NuGet Restore
-        run: nuget restore MyChildCore.Utilities.csproj
+    - name: NuGet Restore
+      run: nuget restore MyChildCore.Utilities/MyChildCore.Utilities.csproj
 
-      - name: Build MyChildCore.Utilities (net48)
-        run: msbuild MyChildCore.Utilities.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+    - name: Build MyChildCore.Utilities (net48)
+      run: msbuild MyChildCore.Utilities/MyChildCore.Utilities.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
-      - name: List output DLLs (for debug)
-        run: dir ./bin/Release/net48
-        shell: pwsh
-
-      - name: Upload DLL artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MyChildCore-Utilities-DLL
-          path: |
-            bin/Release/net48/*.dll
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MyChildCore-Utilities-DLL
+        path: |
+          MyChildCore.Utilities/bin/Release/net48/*.dll
