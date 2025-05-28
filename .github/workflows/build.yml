@@ -1,37 +1,30 @@
-name: Build MyChildCore DLL
+name: Build Stardew Valley Mod
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout source code
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    - name: Setup .NET 8 SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Prepare DLL dependencies
-      run: |
-        mkdir -p ~/.nuget/packages
-        mkdir -p MyChildCore/lib
-        cp -r DLL/* MyChildCore/lib/
+    - name: Restore NuGet packages
+      run: nuget restore MyChildCore.sln
 
-    - name: Restore and Build
-      run: |
-        dotnet restore MyChildCore/MyChildCore.csproj
-        dotnet build MyChildCore/MyChildCore.csproj -c Release --no-restore
+    - name: Build mod
+      run: msbuild MyChildCore.sln /p:Configuration=Release
 
-    - name: Upload built DLL
+    - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MyChildCore-DLL
+        name: MyChildCoreDLL
         path: |
-          MyChildCore/bin/Release/net8.0/MyChildCore.dll
+          **/bin/Release/**/*.dll
