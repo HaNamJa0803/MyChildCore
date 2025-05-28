@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyChildCore.Mod</RootNamespace>
+    <AssemblyName>MyChildCore.Mod</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Stardew Valley 및 종속 DLL 참조 (반드시 net48 기반!) -->
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.ToolkitCoreInterfaces">
+      <HintPath>../libs/SMAPI.ToolkitCoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="MyChildCore.Utilities">
+      <HintPath>../libs/MyChildCore.Utilities.dll</HintPath>
+    </Reference>
+    <!-- 필요한 경우 다른 DLL 추가 가능 -->
+  </ItemGroup>
+  <!--
+    EnableDefaultCompileItems가 true라서
+    별도의 <Compile Include="..."/> 없이
+    csproj 폴더 내 .cs 파일이 자동으로 전부 컴파일됩니다.
+  -->
+</Project>
