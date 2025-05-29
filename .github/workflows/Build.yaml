@@ -2,45 +2,32 @@ name: Build MyChildCore.Utilities
 
 on:
   push:
-    branches: [ main, master, dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master, dev ]
-  workflow_dispatch:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Setup .NET Framework (msbuild)
-        uses: microsoft/setup-msbuild@v2
-        with:
-          vs-version: 'latest'
+    - name: Setup .NET Framework (msbuild)
+      uses: microsoft/setup-msbuild@v2
 
-      - name: Add NuGet to PATH
-        uses: nuget/setup-nuget@v2
+    - name: Add NuGet to PATH
+      uses: nuget/setup-nuget@v2
 
-      - name: Restore NuGet packages
-        run: nuget restore MyChildCore.Utilities.csproj
+    - name: Restore NuGet packages
+      run: nuget restore MyChildCore.Utilities/MyChildCore.Utilities.csproj
 
-      - name: Copy Game/Mod Libraries (DLLs)
-        run: |
-          mkdir libs
-          curl -L -o libs/StardewValley.dll            "https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewValley.dll" || echo "Please upload StardewValley.dll"
-          curl -L -o libs/StardewModdingAPI.dll        "https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewModdingAPI.dll" || echo "Please upload StardewModdingAPI.dll"
-          curl -L -o libs/MonoGame.Framework.dll       "https://github.com/MonoGame/MonoGame/releases/download/v3.8.0.1641/MonoGame.Framework.dll" || echo "Please upload MonoGame.Framework.dll"
-          curl -L -o libs/Newtonsoft.Json.dll          "https://www.nuget.org/api/v2/package/Newtonsoft.Json/13.0.3" || echo "Please upload Newtonsoft.Json.dll"
-          # 다른 DLL(예: StardewValley.GameData, 0Harmony, SMAPI.ToolkitCoreInterfaces 등)은 직접 업로드 필요!
+    - name: Build project (Release)
+      run: msbuild MyChildCore.Utilities/MyChildCore.Utilities.csproj /p:Configuration=Release
 
-      - name: Build project (Release)
-        run: msbuild MyChildCore.Utilities.csproj /t:Clean,Build /p:Configuration=Release
-
-      - name: Upload DLL artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MyChildCore.Utilities
-          path: |
-            bin/Release/MyChildCore.Utilities.dll
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MyChildCore.Utilities
+        path: MyChildCore.Utilities/bin/Release/MyChildCore.Utilities.dll
