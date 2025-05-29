@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework> <!-- 1.6.10+ 지원용, .NET Framework 4.8 고정 -->
+    <OutputType>Library</OutputType>          <!-- 보조 DLL용 -->
+    <RootNamespace>MyChildCore.Utilities</RootNamespace>
+    <AssemblyName>MyChildCore.Utilities</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems> <!-- src 내 .cs 자동 포함 -->
+    <Nullable>disable</Nullable>            <!-- Nullable 비활성화: 하드코딩 안정성 유지 -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Stardew 모드 API 핵심 DLL들 -->
+    <Reference Include="StardewValley">
+      <HintPath>../libs/StardewValley.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>../libs/StardewModdingAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>../libs/StardewValley.GameData.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>../libs/MonoGame.Framework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SMAPI.ToolkitCoreInterfaces">
+      <HintPath>../libs/SMAPI.ToolkitCoreInterfaces.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- JSON 직렬화 -->
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>../libs/Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Harmony (패치 시스템) -->
+    <Reference Include="0Harmony">
+      <HintPath>../libs/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- System, System.Core 등은 .NET Framework 4.8 내장 자동 참조 -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 리소스/에셋/이미지 포함 필요시 아래 주석 해제 -->
+    <!-- <None Include="assets\**\*" CopyToOutputDirectory="PreserveNewest" /> -->
+  </ItemGroup>
+
+</Project>
