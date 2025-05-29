@@ -13,10 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
     - name: Setup MSBuild for .NET Framework 4.8
       uses: microsoft/setup-msbuild@v1.3.1
 
-    - name: Build MyChildCore
+    - name: Restore NuGet packages
+      run: nuget restore MyChildCore.csproj
+
+    - name: Build MyChildCore DLL
       run: msbuild MyChildCore.csproj /p:Configuration=Release
 
     - name: Upload built DLL
