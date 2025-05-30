@@ -1,10 +1,10 @@
-name: Build MyChildCore
+name: .NET Framework Build
 
 on:
   push:
-    branches: [main, master]
+    branches: [ main ]
   pull_request:
-    branches: [main, master]
+    branches: [ main ]
 
 jobs:
   build:
@@ -14,17 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET Framework
-        uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
-        run: nuget restore MyChildCore/MyChildCore.csproj
+        run: nuget restore MyChildCore.csproj
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
       - name: Build solution
-        run: msbuild MyChildCore/MyChildCore.csproj /p:Configuration=Release
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: MyChildCore.Utilities.dll
-          path: MyChildCore/bin/Release/MyChildCore.Utilities.dll
+        run: msbuild MyChildCore.csproj /p:Configuration=Release
