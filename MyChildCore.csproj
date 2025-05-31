@@ -31,9 +31,6 @@
     <Reference Include="StardewValley.GameData">
       <HintPath>libs\StardewValley.GameData.dll</HintPath>
     </Reference>
-    <Reference Include="StardewValley.GameData">
-      <HintPath>libs\StardewValley.GameData.dll</HintPath>
-    </Reference>
     <!-- 필요시 System.Core(예: LINQ 사용 오류시) -->
     <Reference Include="System.Core" />
     <!-- 필요시 StardewValley.GameData.Characters, GameData.NPCs 등 추가
