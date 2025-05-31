@@ -16,7 +16,6 @@ namespace MyChildCore.Utilities
         {
             if (child == null) return null;
 
-            // 배우자 이름 및 성별
             string spouseName = AppearanceManager.GetSpouseName(child);
             bool isMale = ((int)child.Gender == 0);
 
@@ -24,98 +23,139 @@ namespace MyChildCore.Utilities
             if (!config.SpouseConfigs.TryGetValue(spouseName, out var spouseConfig) || spouseConfig == null)
                 spouseConfig = new SpouseChildConfig();
 
-            string hairKey    = isMale ? "Short" : (spouseConfig.GirlHairStyle ?? "CherryTwin");
-            string topKey     = isMale ? "Top_Male" : "Top_Female";
-            string bottomKey  = isMale ? spouseConfig.BoyPants ?? "Pants_01" : spouseConfig.GirlSkirt ?? "Skirt_01";
-            string shoesKey   = isMale ? spouseConfig.BoyShoes ?? "Shoes_01" : spouseConfig.GirlShoes ?? "Shoes_01";
-            string neckKey    = isMale ? spouseConfig.BoyNeckCollar ?? "NeckCollar_01" : spouseConfig.GirlNeckCollar ?? "NeckCollar_01";
-            string pajamaStyle = isMale ? spouseConfig.BoyPajamaStyle ?? "Frog" : spouseConfig.GirlPajamaStyle ?? "Frog";
-            int pajamaColor   = isMale ? spouseConfig.BoyPajamaColorIndex : spouseConfig.GirlPajamaColorIndex;
-            if (pajamaColor < 1) pajamaColor = 1;
+            // 상의(시즌/성별)
+            string TopKeyMaleShort   = "Top_Male_Short";
+            string TopKeyMaleLong    = "Top_Male_Long";
+            string TopKeyFemaleShort = "Top_Female_Short";
+            string TopKeyFemaleLong  = "Top_Female_Long";
 
-            // 스킨/눈(고정값)
-            string skinKey = $"assets/{spouseName}/Toddler/{spouseName}_Toddler_Skin.png";
-            string eyeKey  = $"assets/{spouseName}/Toddler/{spouseName}_Toddler_Eye.png";
+            // 하의(남/여 분리)
+            string PantsKey = spouseConfig.BoyPants ?? "Pants_01";
+            string SkirtKey = spouseConfig.GirlSkirt ?? "Skirt_01";
 
-            // 축제복(분기, 존재하지 않으면 null)
+            // 신발, 넥칼라
+            string ShoesKey = isMale ? spouseConfig.BoyShoes ?? "Shoes_01" : spouseConfig.GirlShoes ?? "Shoes_01";
+            string NeckKey = isMale ? spouseConfig.BoyNeckCollar ?? "NeckCollar_01" : spouseConfig.GirlNeckCollar ?? "NeckCollar_01";
+
+            // 헤어, 스킨, 눈 (리소스 대소문자 일치)
+            string HairKey = isMale ? "Short" : (spouseConfig.GirlHairStyle ?? "CherryTwin");
+            string SkinKey = $"assets/{spouseName}/Toddler/{spouseName}_Toddler_Skin.png";
+            string EyeKey  = $"assets/{spouseName}/Toddler/{spouseName}_Toddler_Eye.png";
+
+            // 잠옷 (예: Frog_01, Sheep_04, ...)
+            string PajamaStyle = isMale ? spouseConfig.BoyPajamaStyle ?? "Frog" : spouseConfig.GirlPajamaStyle ?? "Frog";
+            int PajamaColorIndex = isMale ? spouseConfig.BoyPajamaColorIndex : spouseConfig.GirlPajamaColorIndex;
+            if (PajamaColorIndex < 1) PajamaColorIndex = 1;
+            string PajamaKey = $"{PajamaStyle}_{PajamaColorIndex:D2}"; // → 실제 파일: assets/clothes/sleep/Frog/Frog_01.png
+
+            // 축제복 (시즌/성별 분리, 실제 파일명은 반드시 일치)
             string season = Utility.getSeasonNameFromNumber(Game1.seasonIndex).ToLower();
-            string genderKey = isMale ? "Male" : "Female";
-            string festivalTopKey = null, festivalHatKey = null, festivalNeckKey = null;
+            string SpringHatKeyMale   = null;
+            string SummerHatKey       = null;
+            string SummerTopKeyMale   = null;
+            string SummerTopKeyFemale = null;
+            string FallTopKeyMale     = null;
+            string FallTopKeyFemale   = null;
+            string WinterHatKey       = null;
+            string WinterTopKeyMale   = null;
+            string WinterTopKeyFemale = null;
+            string WinterNeckKey      = null;
 
-            if (Game1.isFestival)
+            if (Game1.isFestival())
             {
                 if (season == "spring")
                 {
-                    festivalTopKey = $"Clothes/Festival/Spring/FestivalTop_{genderKey}_Spring.png";
+                    SpringHatKeyMale = "FestivalHat_Male_Spring";
                 }
                 else if (season == "summer")
                 {
-                    festivalTopKey = $"Clothes/Festival/Summer/FestivalTop_{genderKey}_Summer.png";
-                    festivalHatKey = $"Clothes/Festival/Summer/FestivalHat_{genderKey}_Summer.png";
+                    SummerHatKey       = isMale ? "FestivalHat_Male_Summer" : "FestivalHat_Female_Summer";
+                    SummerTopKeyMale   = "FestivalTop_Male_Summer";
+                    SummerTopKeyFemale = "FestivalTop_Female_Summer";
                 }
                 else if (season == "fall" || season == "autumn")
                 {
-                    festivalTopKey = $"Clothes/Festival/Fall/FestivalTop_{genderKey}_Fall.png";
+                    FallTopKeyMale   = "FestivalTop_Male_Fall";
+                    FallTopKeyFemale = "FestivalTop_Female_Fall";
                 }
                 else if (season == "winter")
                 {
-                    festivalTopKey = $"Clothes/Festival/Winter/FestivalTop_{genderKey}_Winter.png";
-                    festivalHatKey = $"Clothes/Festival/Winter/FestivalHat_{genderKey}_Winter.png";
-                    festivalNeckKey = $"Clothes/Festival/Winter/FestivalNeck_{genderKey}_Winter.png";
+                    WinterHatKey       = isMale ? "FestivalHat_Male_Winter" : "FestivalHat_Female_Winter";
+                    WinterTopKeyMale   = "FestivalTop_Male_Winter";
+                    WinterTopKeyFemale = "FestivalTop_Female_Winter";
+                    WinterNeckKey      = "FestivalNeck_Winter";
                 }
             }
 
             return new ChildParts
             {
-                HairKey = hairKey,
-                TopKey = topKey,
-                BottomKey = bottomKey,
-                ShoesKey = shoesKey,
-                NeckKey = neckKey,
-                PajamaStyle = pajamaStyle,
-                PajamaColorIndex = pajamaColor,
+                TopKeyMaleShort   = TopKeyMaleShort,
+                TopKeyMaleLong    = TopKeyMaleLong,
+                TopKeyFemaleShort = TopKeyFemaleShort,
+                TopKeyFemaleLong  = TopKeyFemaleLong,
+
+                PantsKey = PantsKey,
+                SkirtKey = SkirtKey,
+                ShoesKey = ShoesKey,
+                NeckKey  = NeckKey,
+
+                HairKey  = HairKey,
+                SkinKey  = SkinKey,
+                EyeKey   = EyeKey,
+
+                PajamaKey = PajamaKey,
+                PajamaColorIndex = PajamaColorIndex,
+
+                // 축제복
+                SpringHatKeyMale   = SpringHatKeyMale,
+                SummerHatKey       = SummerHatKey,
+                SummerTopKeyMale   = SummerTopKeyMale,
+                SummerTopKeyFemale = SummerTopKeyFemale,
+                FallTopKeyMale     = FallTopKeyMale,
+                FallTopKeyFemale   = FallTopKeyFemale,
+                WinterHatKey       = WinterHatKey,
+                WinterTopKeyMale   = WinterTopKeyMale,
+                WinterTopKeyFemale = WinterTopKeyFemale,
+                WinterNeckKey      = WinterNeckKey,
+
                 SpouseName = spouseName,
-                IsMale = isMale,
-                SkinKey = skinKey,
-                EyeKey = eyeKey,
-                FestivalTopKey = festivalTopKey,
-                FestivalHatKey = festivalHatKey,
-                FestivalNeckKey = festivalNeckKey
+                IsMale     = isMale
             };
         }
 
         /// <summary>
         /// 아기 전용 파츠 조합 추출 (하드코딩 & 정확성 우선)
         /// </summary>
-        public static ChildParts GetPartsForBaby(Child baby, DropdownConfig config)
+        public static ChildParts GetPartsForBaby(Child Baby, DropdownConfig config)
         {
-            if (baby == null || baby.Age != 0) return null;
+            if (Baby == null || Baby.Age != 0) return null;
 
-            string spouseName = AppearanceManager.GetSpouseName(baby);
-            bool isMale = ((int)baby.Gender == 0);
+            string spouseName = AppearanceManager.GetSpouseName(Baby);
+            bool isMale = ((int)Baby.Gender == 0);
 
             if (!config.SpouseConfigs.TryGetValue(spouseName, out var spouseConfig) || spouseConfig == null)
                 spouseConfig = new SpouseChildConfig();
 
-            // 아기용 파츠 세팅 (공용 바디, 배우자별 헤어/눈/스킨)
-            string babyBodyKey = "Baby_Body"; // 공용 경로, 필요 시 조정 가능
-            string babyHairKey = $"assets/{spouseName}/Baby/hair/{spouseName}_Baby_hair.png";
-            string babyEyeKey  = $"assets/{spouseName}/Baby/eye/{spouseName}_Baby_eye.png";
-            string babySkinKey = $"assets/{spouseName}/Baby/skin/{spouseName}_Baby_skin.png";
+            // 아기용 파츠 (실제 경로는 대소문자 주의)
+            string BabyBodyKey = "Baby_Body";
+            string BabyHairKey = $"assets/{spouseName}/Baby/Hair/{spouseName}_Baby_Hair.png";
+            string BabyEyeKey  = $"assets/{spouseName}/Baby/Eye/{spouseName}_Baby_Eye.png";
+            string BabySkinKey = $"assets/{spouseName}/Baby/Skin/{spouseName}_Baby_Skin.png";
 
-            // 잠옷 스타일/색상 (유아용과 동일 로직)
-            string pajamaStyle = isMale ? spouseConfig.BoyPajamaStyle ?? "Frog" : spouseConfig.GirlPajamaStyle ?? "Frog";
-            int pajamaColor = isMale ? spouseConfig.BoyPajamaColorIndex : spouseConfig.GirlPajamaColorIndex;
-            if (pajamaColor < 1) pajamaColor = 1;
+            // 잠옷
+            string PajamaStyle = isMale ? spouseConfig.BoyPajamaStyle ?? "Frog" : spouseConfig.GirlPajamaStyle ?? "Frog";
+            int PajamaColorIndex = isMale ? spouseConfig.BoyPajamaColorIndex : spouseConfig.GirlPajamaColorIndex;
+            if (PajamaColorIndex < 1) PajamaColorIndex = 1;
+            string PajamaKey = $"{PajamaStyle}_{PajamaColorIndex:D2}";
 
             return new ChildParts
             {
-                BabyBodyKey = babyBodyKey,
-                BabyHairKey = babyHairKey,
-                BabyEyeKey = babyEyeKey,
-                BabySkinKey = babySkinKey,
-                PajamaStyle = pajamaStyle,
-                PajamaColorIndex = pajamaColor,
+                BabyBodyKey = BabyBodyKey,
+                BabyHairKey = BabyHairKey,
+                BabyEyeKey = BabyEyeKey,
+                BabySkinKey = BabySkinKey,
+                PajamaKey = PajamaKey,
+                PajamaColorIndex = PajamaColorIndex,
                 SpouseName = spouseName,
                 IsMale = isMale
             };
