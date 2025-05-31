@@ -24,4 +24,4 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Build solution (Verbose)
-        run: msbuild MyChildCore.csproj /p:Configuration=Release /verbosity:diagnostic
+        run: msbuild MyChildCore.csproj /p:Configuration=Release /verbosity:normal
