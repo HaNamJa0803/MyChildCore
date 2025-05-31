@@ -31,9 +31,8 @@
     <Reference Include="StardewValley.GameData">
       <HintPath>libs\StardewValley.GameData.dll</HintPath>
     </Reference>
+    <!-- System.Core(LINQ 등) -->
     <Reference Include="System.Core" />
-    <HintPath>libs\System.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
