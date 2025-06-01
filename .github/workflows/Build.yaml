@@ -1,4 +1,4 @@
-name: Build MyChildCore
+name: Build MyChildCore.Utilities
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
     - name: NuGet Restore
       run: nuget restore MyChildCore.csproj
 
-    - name: Build MyChildCore.Utilities (net48)
+    - name: Build MyChildCore.utilities (net48)
       run: msbuild MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
     - name: Upload DLL artifact
