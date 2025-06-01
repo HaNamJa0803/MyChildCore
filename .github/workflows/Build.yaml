@@ -1,4 +1,4 @@
-name: Build MyChildCore.Utilities
+name: Build MyChildCore (net48 + 내장 DLL)
 
 on:
   workflow_dispatch:
@@ -15,14 +15,6 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Download SMAPI DLL
-      run: |
-        curl -L -o libs/StardewModdingAPI.dll https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewModdingAPI.dll
-
-    - name: Check libs folder
-      run: ls -l ../libs
-      working-directory: src
-    
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
 
@@ -31,7 +23,16 @@ jobs:
         cd src
         nuget restore MyChildCore.csproj
 
-    - name: Build MyChildCore.utilities (net48)
+    - name: Build (net48)
       run: |
         cd src
         msbuild MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MyChildCore-DLL
+        path: |
+          ./bin/Release/net48/*.dll
+          ./bin/Release/net48/*.pdb
+          ./bin/Release/net48/*.xml
