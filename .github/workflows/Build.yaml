@@ -11,25 +11,25 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '4.8.x'
 
-      - name: Restore NuGet packages
-        run: nuget restore MyChildCore.csproj
+    - name: Restore NuGet packages
+      run: nuget restore MyChildCore.sln
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+    - name: Build solution
+      run: msbuild MyChildCore.sln /p:Configuration=Release
 
-      - name: Build solution (Verbose)
-        run: msbuild MyChildCore.csproj /p:Configuration=Release /verbosity:normal
-      
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-         name: MyChildCore_Build
-         path: |
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MyChildCore_Build
+        path: |
           ./bin/Release/net48/*.dll
           ./bin/Release/net48/*.pdb
+          ./bin/Release/net48/*.xml
