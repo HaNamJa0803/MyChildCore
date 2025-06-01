@@ -1,35 +1,34 @@
-name: .NET Framework Build
+name: Build MyChildCore.Utilities
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '4.8.x'
+    - name: Setup .NET Framework Developer Pack
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Restore NuGet packages
-      run: nuget restore MyChildCore.sln
+    - name: NuGet Restore
+      run: nuget restore MyChildCore/MyChildCore.csproj
 
-    - name: Build solution
-      run: msbuild MyChildCore.sln /p:Configuration=Release
+    - name: Build MyChildCore (net48)
+      run: msbuild MyChildCore/MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
-    - name: Upload Build Artifacts
+    - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
-        name: MyChildCore_Build
+        name: MyChildCore-Utilities-DLL
         path: |
-          ./bin/Release/net48/*.dll
-          ./bin/Release/net48/*.pdb
-          ./bin/Release/net48/*.xml
+          MyChildCore.Utilities/bin/Release/net48/*.dll
+          MyChildCore.Utiltiers/bin/Release/net48/*.pdb
+          MyChildCore.Utiltiers/bin/Release/net48/*.xml
