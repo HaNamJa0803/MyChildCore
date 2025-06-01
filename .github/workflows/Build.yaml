@@ -1,4 +1,4 @@
-name: Build MyChildCore.Utilities
+name: Build MyChildCore
 
 on:
   workflow_dispatch:
@@ -14,8 +14,6 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v4
-      with:
-        dotnet-version : '4.8.x'
 
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
@@ -31,6 +29,5 @@ jobs:
       with:
         name: MyChildCore-Utilities-DLL
         path: |
-          MyChildCore./bin/Release/net48/*.dll
-          MyChildCore./bin/Release/net48/*.pdb
-          MyChildCore./bin/Release/net48/*.xml
+          ./bin/Release/net48/*.dll
+          ./bin/Release/net48/*.pdb
