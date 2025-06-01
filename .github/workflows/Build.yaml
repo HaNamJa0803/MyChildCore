@@ -15,11 +15,13 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
+    - name: Download SMAPI DLL
+      run: |
+       mkdir -p libs
+       curl -L -o libs/StardewModdingAPI.dll https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewModdingAPI.dll
+
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
-
-    - name: Download SMAPI DLL
-      run: curl -L -o libs/StardewModdingAPI.dll https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewModdingAPI.dll
 
     - name: NuGet Restore
       run: |
@@ -30,12 +32,3 @@ jobs:
       run: |
         cd src
         msbuild MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
-
-    - name: Upload DLL artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: MyChildCore-Utilities-DLL
-        path: |
-          ./src/bin/Release/net48/*.dll
-          ./src/bin/Release/net48/*.pdb
-          ./src/bin/Release/net48/*.xml
