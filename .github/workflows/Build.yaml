@@ -25,3 +25,12 @@ jobs:
 
       - name: Build solution (Verbose)
         run: msbuild MyChildCore.csproj /p:Configuration=Release /verbosity:normal
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        
+        wihd:
+      - name: MyChildCore_Build
+        path: ./bin/Release/net48/*.dll 
+        
+        ./bin/Release/net48/*.pdb
