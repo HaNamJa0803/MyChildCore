@@ -28,9 +28,8 @@ jobs:
       
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
-        
-        wihd:
-      - name: MyChildCore_Build
-        path: ./bin/Release/net48/*.dll 
-        
-        ./bin/Release/net48/*.pdb
+        with:
+         name: MyChildCore_Build
+         path: |
+          ./bin/Release/net48/*.dll
+          ./bin/Release/net48/*.pdb
