@@ -18,6 +18,10 @@ jobs:
     - name: Download SMAPI DLL
       run: |
         curl -L -o libs/StardewModdingAPI.dll https://github.com/Pathoschild/SMAPI/releases/download/4.0.0/StardewModdingAPI.dll
+
+    - name: Check libs folder
+      run: ls -l ../libs
+      working-directory: src
     
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
