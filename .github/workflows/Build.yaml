@@ -14,21 +14,23 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v4
+      with:
+        dotnet-version : '4.8.x'
 
     - name: Setup .NET Framework Developer Pack
       uses: microsoft/setup-msbuild@v2
 
     - name: NuGet Restore
-      run: nuget restore MyChildCore/MyChildCore.csproj
+      run: nuget restore MyChildCore.csproj
 
-    - name: Build MyChildCore (net48)
-      run: msbuild MyChildCore/MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+    - name: Build MyChildCore.Utilities (net48)
+      run: msbuild MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
         name: MyChildCore-Utilities-DLL
         path: |
-          MyChildCore.Utilities/bin/Release/net48/*.dll
-          MyChildCore.Utiltiers/bin/Release/net48/*.pdb
-          MyChildCore.Utiltiers/bin/Release/net48/*.xml
+          MyChildCore./bin/Release/net48/*.dll
+          MyChildCore./bin/Release/net48/*.pdb
+          MyChildCore./bin/Release/net48/*.xml
