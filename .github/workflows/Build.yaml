@@ -23,10 +23,8 @@ jobs:
         cd src
         nuget restore MyChildCore.csproj
 
-    - name: Build (net48)
-      run: |
-        cd src
-        msbuild MyChildCore.csproj /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+    - name: Build
+      run: dotnet build -c Release
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
@@ -35,5 +33,4 @@ jobs:
        path: |
          ./Test/bin/Release/net48/*.dll
          ./Test/bin/Release/net48/*.pdb
-         ./Test/bin/Release/net48/*.xml
        if-no-files-found: warn
