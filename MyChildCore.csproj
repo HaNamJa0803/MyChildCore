@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>ContentPatcher</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="StardewValley" />
+    <Reference Include="StardewModdingAPI" />
+    <Reference Include="MonoGame.Framework" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="StardewValley.GameData" />
+    <Reference Include="GenericModConfigMenu" />
+    <Reference Include="MyChildCore.Utilities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.dll" />
+    <Reference Include="System.Xml.dll" />
+  </ItemGroup>
+</Project>
