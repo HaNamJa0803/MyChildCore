@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '6.0.x'
 
     - name: Restore dependencies
       run: dotnet restore MyChildCore.csproj
@@ -31,7 +31,6 @@ jobs:
       with:
         name: MyChildCore-DLL
         path: |
-          ./bin/Release/net8.0/*.dll
-          ./bin/Release/net8.0/*.pdb
-          ./bin/Release/net8.0/*.xml
+          ./bin/Release/net6.0/*.dll
+          ./bin/Release/net6.0/*.pdb
         if-no-files-found: warn
