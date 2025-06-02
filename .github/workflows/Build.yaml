@@ -29,9 +29,9 @@ jobs:
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
-        name: MyChildCore-DLL
-        path: |
-          ./bin/Release/net8.0/*.dll
-          ./bin/Release/net8.0/*.pdb
-          ./bin/Release/net8.0/*.xml
-        if-no-files-found: warn
+       name: MyChildCore-DLL
+       path: |
+         ./src/bin/Release/net8.0/*.dll
+         ./src/bin/Release/net8.0/*.pdb
+         ./src/bin/Release/net8.0/*.xml
+       if-no-files-found: warn
