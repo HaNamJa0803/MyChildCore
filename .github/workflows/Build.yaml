@@ -29,7 +29,7 @@ jobs:
       with:
        name: MyChildCore-DLL
        path: |
-         ./src/bin/Release/net48/*.dll
-         ./src/bin/Release/net48/*.pdb
-         ./src/bin/Release/net48/*.xml
+         ./bin/Release/net48/*.dll
+         ./bin/Release/net48/*.pdb
+         ./bin/Release/net48/*.xml
        if-no-files-found: warn
