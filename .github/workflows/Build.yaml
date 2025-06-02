@@ -33,6 +33,6 @@ jobs:
       with:
         name: MyChildCore-DLL
         path: |
-          ./bin/Release/net48/*.dll
-          ./bin/Release/net48/*.pdb
-          ./bin/Release/net48/*.xml
+         path: ./src/bin/Release/net48/*.dll
+           ./src/bin/Release/net48/*.pdb
+           ./src/bin/Release/net48/*.xml
