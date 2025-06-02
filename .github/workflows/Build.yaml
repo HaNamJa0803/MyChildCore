@@ -1,4 +1,4 @@
-name: Build MyChildCore (net48 + 내장 DLL)
+name: Build MyChildCore (net8.0 + 내장 DLL)
 
 on:
   workflow_dispatch:
@@ -15,21 +15,23 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Setup .NET Framework Developer Pack
-      uses: microsoft/setup-msbuild@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
 
-    - name: NuGet Restore
-      run: nuget restore MyChildCore.csproj
+    - name: Restore dependencies
+      run: dotnet restore MyChildCore.csproj
 
     - name: Build
-      run: dotnet build -c Release
+      run: dotnet build MyChildCore.csproj -c Release
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
-       name: MyChildCore-DLL
-       path: |
-         ./bin/Release/net48/*.dll
-         ./bin/Release/net48/*.pdb
-         ./bin/Release/net48/*.xml
-       if-no-files-found: warn
+        name: MyChildCore-DLL
+        path: |
+          ./bin/Release/net8.0/*.dll
+          ./bin/Release/net8.0/*.pdb
+          ./bin/Release/net8.0/*.xml
+        if-no-files-found: warn
