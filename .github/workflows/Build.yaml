@@ -31,7 +31,7 @@ jobs:
       with:
        name: MyChildCore-DLL
        path: |
-         ./bin/Release/net8.0/*.dll
-         ./bin/Release/net8.0/*.pdb
-         ./bin/Release/net8.0/*.xml
+        ./bin/Release/net8.0/*.dll
+        ./bin/Release/net8.0/*.pdb
+        ./bin/Release/net8.0/*.xml
        if-no-files-found: warn
