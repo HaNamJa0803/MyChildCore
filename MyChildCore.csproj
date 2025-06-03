@@ -2,16 +2,13 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>MyChildCore</RootNamespace>
     <AssemblyName>MyChildCore</AssemblyName>
     <LangVersion>latest</LangVersion>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="src\*.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="StardewValley">
       <HintPath>libs\StardewValley.dll</HintPath>
@@ -19,18 +16,17 @@
     <Reference Include="StardewModdingAPI">
       <HintPath>libs\StardewModdingAPI.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>libs\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
-      <HintPath>libs\SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>libs\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="GenericModConfigMenu">
       <HintPath>libs\GenericModConfigMenu.dll</HintPath>
     </Reference>
-    <!-- System.dll, System.Core.dll 등은 net8.0에서는 불필요 -->
+    <Reference Include="StardewModdingAPI.Toolkit">
+      <HintPath>libs\StardewModdingAPI.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewValley.GameData">
+      <HintPath>libs\StardewValley.GameData.dll</HintPath>
+    </Reference>
+    <!-- 필요시
+    <Reference Include="System.Core" />
+    -->
   </ItemGroup>
 </Project>
