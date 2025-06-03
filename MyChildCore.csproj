@@ -22,6 +22,8 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>libs\MonoGame.Framework.dll</HintPath>
     </Reference>
+      <HintPath>libs\SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
