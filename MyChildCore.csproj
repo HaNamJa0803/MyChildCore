@@ -22,6 +22,9 @@
     <Reference Include="StardewModdingAPI.Toolkit">
       <HintPath>libs\StardewModdingAPI.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StardewValley.GameData">
       <HintPath>libs\StardewValley.GameData.dll</HintPath>
     </Reference>
