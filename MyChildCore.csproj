@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <RootNamespace>MyChildCore</RootNamespace>
     <AssemblyName>MyChildCore</AssemblyName>
-    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
@@ -14,12 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>libs\StardewModdingAPI.dll</HintPath>
+    </Reference>
     <Reference Include="StardewValley">
       <HintPath>libs\StardewValley.dll</HintPath>
     </Reference>
-    <Reference Include="StardewModdingAPI">
-      <HintPath>libs\StardewModdingAPI.dll</HintPath>
-      
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Linq" />
   </ItemGroup>
 
 </Project>
