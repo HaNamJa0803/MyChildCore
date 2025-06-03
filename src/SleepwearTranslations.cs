@@ -13,7 +13,7 @@ public static class SleepwearTranslations
 	public static string GetStyleDisplay(string key)
 	{
 		string result = default(string);
-		if (!StyleKorean.TryGetValue(key, ref result))
+		if (!StyleKorean.TryGetValue(key, out result))
 		{
 			return key;
 		}
@@ -23,7 +23,7 @@ public static class SleepwearTranslations
 	public static string GetColorDisplay(string key)
 	{
 		string result = default(string);
-		if (!ColorKorean.TryGetValue(key, ref result))
+		if (!ColorKorean.TryGetValue(key, out result))
 		{
 			return key;
 		}
