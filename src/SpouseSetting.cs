@@ -1,3 +1,4 @@
+using ModConfigs; // 또는 실제 네임스페이스
 using System.Runtime.CompilerServices;
 
 namespace MyChildCore;
