@@ -22,6 +22,10 @@
     </Reference>
     <Reference Include="System.Collections">
       <HintPath>libs\StardewValley.GameData.dll</HintPath>
+    <Reference Include="StardewValley">
+      <HintPath>libs\System.dll</HintPath>
+    <Reference Include="StardewValley">
+      <HintPath>libs\System.Runtime.dll</HintPath>
     </Reference>
     <!-- 불필요해진 보조 DLL 참조는 삭제! -->
   </ItemGroup>
