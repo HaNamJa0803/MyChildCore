@@ -1,4 +1,4 @@
-name: Build MyChildCore (net8.0 + 내장 DLL)
+name: Build MyChildCore (net8.0)
 
 on:
   workflow_dispatch:
