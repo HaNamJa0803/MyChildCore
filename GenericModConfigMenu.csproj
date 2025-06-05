@@ -5,16 +5,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>11.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
-
-  <!-- 소스코드 자동포함 -->
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
-
-  <!-- 루트/libs 참조 경로 -->
-  <ItemGroup>
-    <Reference Include="MonoGame.Framework">
+  <Reference Include="MonoGame.Framework">
       <HintPath>libs\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="SMAPI.Toolkit.CoreInterfaces">
