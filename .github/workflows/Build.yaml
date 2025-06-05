@@ -21,7 +21,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore MyChildCore.csproj
+      run: dotnet restore GenericModConfigMenu.csproj
 
     - name: Build
       run: dotnet build GenericModConfigMenu.csproj -c Release
