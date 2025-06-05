@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>MyChildCore</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems> <!-- ★ 이 줄 꼭 넣어! -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +30,6 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
 
-  <!-- 필요시 Newtonsoft.Json 등 외부 패키지도 추가 -->
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
