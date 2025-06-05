@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>GenericModConfigMenu</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!-- 여기가 소스코드 자동포함 설정이야! -->
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework" />
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces" />
+    <Reference Include="StardewModdingAPI" />
+    <Reference Include="Stardew Valley" />
+    <Reference Include="xTile" />
+  </ItemGroup>
+</Project>
