@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>MyChildCore</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Stardew Valley 본 게임 DLL 참조 (경로는 환경에 따라 다름) -->
+    <Reference Include="StardewValley">
+      <HintPath>..\..\StardewValley\Stardew Valley.dll</HintPath>
+    </Reference>
+
+    <!-- SMAPI DLL 참조 -->
+    <Reference Include="StardewModdingAPI">
+      <HintPath>..\..\SMAPI\StardewModdingAPI.dll</HintPath>
+    </Reference>
+
+    <!-- GMCM DLL 참조 (직접 빌드한 net8.0용으로 지정!) -->
+    <Reference Include="GenericModConfigMenu">
+      <HintPath>..\..\GMCM\GenericModConfigMenu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+
+  <!-- 필요시 Newtonsoft.Json 등 외부 패키지도 추가 -->
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
