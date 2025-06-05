@@ -3,22 +3,31 @@
     <AssemblyName>GenericModConfigMenu</AssemblyName>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <TargetFramework>net8.0</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup>
     <LangVersion>11.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <!-- 여기가 소스코드 자동포함 설정이야! -->
+  <!-- 소스코드 자동포함 -->
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
 
+  <!-- 루트/libs 참조 경로 -->
   <ItemGroup>
-    <Reference Include="MonoGame.Framework" />
-    <Reference Include="SMAPI.Toolkit.CoreInterfaces" />
-    <Reference Include="StardewModdingAPI" />
-    <Reference Include="Stardew Valley" />
-    <Reference Include="xTile" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>libs\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces">
+      <HintPath>libs\SMAPI.Toolkit.CoreInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>libs\StardewModdingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Stardew Valley">
+      <HintPath>libs\Stardew Valley.dll</HintPath>
+    </Reference>
+    <Reference Include="xTile">
+      <HintPath>libs\xTile.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
