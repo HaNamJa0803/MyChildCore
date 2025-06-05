@@ -21,10 +21,10 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore GenericModConfigMenu.csproj
+      run: dotnet restore MyChildCore.csproj
 
     - name: Build
-      run: dotnet build GenericModConfigMenu.csproj -c Release
+      run: dotnet build MyChildCore.csproj -c Release
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
