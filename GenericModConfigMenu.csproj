@@ -10,7 +10,8 @@
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
-  <Reference Include="MonoGame.Framework">
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
       <HintPath>libs\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="SMAPI.Toolkit.CoreInterfaces">
