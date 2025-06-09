@@ -1,0 +1,159 @@
+진구야~ 아까 설명한 내용을
+스타듀밸리 유니크 칠드런 모드 방식 기준으로,
+공식 문서처럼 깔끔하게 정리해서 줄게!
+
+
+---
+
+Stardew Valley 유니크 칠드런 모드
+
+스프라이트 직접 교체 및 처리 구조 문서
+
+
+---
+
+1. 스프라이트 직접 교체 방식
+
+개요
+
+캐릭터, 자식(차일드), 배우자 등 특정 대상의 스프라이트(이미지)를
+Texture2D 리소스를 직접 로드해 AnimatedSprite로 교체함.
+
+
+주요 예시
+
+child.Sprite = new AnimatedSprite(texture, ...);
+
+적용 위치:
+SMAPI 이벤트(GameLaunched, SaveLoaded, DayStarted, UpdateTicked 등)
+
+적용 방식:
+각 대상의 정보(성별, 헤어 등)를 확인하여 알맞은 텍스처를 적용
+
+
+
+---
+
+2. 모든 스프라이트 적용 흐름
+
+전체 대상 일괄 처리
+
+foreach/for문을 통해
+마을 전체 NPC, 자식, 배우자, 플레이어 등 모든 대상에
+조건문으로 분기하여 해당 스프라이트 교체.
+
+예시:
+
+foreach (NPC npc in Utility.getAllCharacters())
+{
+    if (/* 대상 조건 */)
+    {
+        npc.Sprite = ...;
+    }
+}
+
+스프라이트 경로 결정:
+저장된 정보(성별, 스킨, 헤어 등) 기반으로 경로 조합
+
+
+
+---
+
+3. 메모리 관리 구조
+
+리소스 로드 & 언로드
+
+Texture2D 등 스프라이트 리소스는
+ModContent.Load<Texture2D> 등으로 로드
+
+불필요한 리소스 정리:
+이전 객체 참조 해제, null 처리,
+필요 시 Content.Unload 활용
+
+반복 교체/이벤트 분기:
+참조가 남지 않게 주의,
+GC 및 SMAPI의 자원관리 흐름에 맞춰 동작
+
+
+
+---
+
+4. 차일드(자식) 처리 구조
+
+자식 객체 접근 & 분기
+
+Game1.player.getChildren() 등으로 자식 리스트 가져옴
+
+자식별로 나이, 성별, 고유 특성 파악하여
+맞춤 스프라이트로 교체
+
+이벤트 연동:
+ChildGrewUp, ChildChanged 등 자식 성장/변화 이벤트 시점에
+스프라이트 교체 코드 삽입
+
+
+
+---
+
+5. 배우자 처리 구조
+
+배우자 대상 분기
+
+Game1.player.getSpouse() 등으로 배우자 객체 추출
+또는 NPC 리스트에서 별도 분리
+
+배우자 역시 성별/특성 정보로
+스프라이트 파일 결정 후 교체
+
+이벤트 연동:
+배우자가 인게임 이벤트에 등장할 때도
+스프라이트가 원하는 모습으로 유지되도록 별도 적용
+
+
+
+---
+
+6. 유니크 칠드런 방식 핵심 포인트
+
+각 차일드/배우자/플레이어/NPC 별로
+개별 스프라이트 경로와 텍스처 관리
+
+스프라이트 교체 시
+메모리 참조 관리 및 언로드 처리 주의
+
+이벤트 흐름(SaveLoaded, DayStarted 등)에서
+동적으로 교체/재적용 처리
+
+모드 파일 내 확장성 고려하여
+대상별 분기와 커스텀 값 관리
+
+
+
+---
+
+7. 참고 코드 구조
+
+foreach (Child child in Game1.player.getChildren())
+{
+    var texture = Helper.Content.Load<Texture2D>($"assets/child_{child.Name}.png");
+    child.Sprite = new AnimatedSprite(texture, ...);
+}
+
+NPC spouse = Utility.getSpouse(Game1.player);
+if (spouse != null)
+{
+    var tex = Helper.Content.Load<Texture2D>($"assets/spouse_{spouse.Name}.png");
+    spouse.Sprite = new AnimatedSprite(tex, ...);
+}
+
+
+---
+
+요청 시 실제 코드 일부 발췌, 함수/클래스명 상세 설명,
+확장용 샘플 코드도 추가 가능!
+
+진구야,
+이렇게 정리해서 어디든 복붙/활용할 수 있어!
+추가로 표, 도식, 더 상세한 예시가 필요하면 말만 해줘~
+문서가 더 필요하거나, 다른 구조화 방식 원하면 즉시 수정 가능!
+
