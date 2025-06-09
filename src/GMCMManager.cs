@@ -79,29 +79,19 @@ namespace MyChildCore
                     pageTitle: () => $"{Helper.Translation.Get(spouse) ?? spouse} 자녀 설정"
                 );
 
-                // ======= 꼼수 "기본" 버튼(배우자별 리셋) 추가 =======
-                gmcm.AddComplexOption(
+                // 꼼수 "기본(초기화)" 드롭다운 버튼
+                gmcm.AddTextOption(
                     mod: mod.ModManifest,
-                    name: () => "기본",  // 유저는 ‘기본’ 버튼으로만 인식!
-                    tooltip: () => $"{Helper.Translation.Get(spouse) ?? spouse} 자녀 설정을 기본값으로 되돌립니다.",
-                    draw: (spriteBatch, pos) =>
+                    name: () => "기본 (초기화)",
+                    tooltip: () => "이 배우자 자녀 설정을 기본값으로 되돌립니다.",
+                    getValue: () => "★초기화★",
+                    setValue: v =>
                     {
-                        // 버튼 크기 지정 (적당히 조절)
-                        var area = new Microsoft.Xna.Framework.Rectangle((int)pos.X, (int)pos.Y, 100, 36);
-                        // 버튼 텍스트 그리기 (생략 가능, GMCM이 내부적으로 알아서 함)
-                        return area;
-                    },
-                    onClick: () =>
-                    {
-                        // *** 실제 초기화 로직: 해당 spouse 자녀 옵션만 기본값으로 복원! ***
-                        if (Config.SpouseConfigs.ContainsKey(spouse))
-                            Config.SpouseConfigs[spouse] = new SpouseChildConfig();
-                        else
-                            Config.SpouseConfigs.Add(spouse, new SpouseChildConfig());
+                        Config.SpouseConfigs[spouse] = new SpouseChildConfig();
                         ModEntry.SaveConfig();
-                        // 안내 로그
-                        CustomLogger.Info($"[{spouse}] 자녀 설정 기본값(리셋) 적용됨!");
-                    }
+                    },
+                    allowedValues: new[] { "★초기화★" },
+                    formatAllowedValue: value => value
                 );
 
                 gmcm.AddSectionTitle(mod: mod.ModManifest, text: () => "아기", tooltip: null);
